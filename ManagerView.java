@@ -22,7 +22,8 @@ public class ManagerView {
 		cal.addChangeListener(new ChangeListener(){
 
 			public void stateChanged(ChangeEvent e) {
-				//Change available rooms 
+				//Change available rooms
+				//display them
 				
 			}
 			
