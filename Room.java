@@ -2,6 +2,7 @@
 public class Room {
 	private int roomNumber;
 	private boolean available;
+	private int rate;
 	
 	public boolean isAvailable() {
 		return available;
@@ -11,6 +12,11 @@ public class Room {
 	}
 	public int getRoomNumber() {
 		return roomNumber;
+	}
+	
+	public int getRate()
+	{
+		return rate;
 	}
 	
 }

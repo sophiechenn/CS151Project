@@ -4,9 +4,13 @@ public class User {
 	private String name;
 	private String password;
 	private int id;
-	private ArrayList<String> reservations;
+	private ArrayList<Reservation> reservations;
 	
-	public User(String name, String password, int id, ArrayList<String> reservations)
+	public ArrayList<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public User(String name, String password, int id)
 	{
 		this.name  = name;
 		this.password = password;
