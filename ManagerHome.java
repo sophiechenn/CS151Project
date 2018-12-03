@@ -1,8 +1,11 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.GregorianCalendar;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class ManagerHome {
 
@@ -38,7 +41,8 @@ public class ManagerHome {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						m.view();
+						//cal = new CalendarView(new GregorianCalendar());
+						//m.view();w
 					}
 				});
 		
@@ -63,6 +67,8 @@ public class ManagerHome {
 						m.quit();
 					}
 				});
+		
+		
 		
 		buttonPanel.add(button1);
 		buttonPanel.add(button2);
