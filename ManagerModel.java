@@ -68,19 +68,23 @@ public class ManagerModel {
 
 		while (scan.hasNextLine())
 		{
-			int roomNum = scan.nextInt();
+			//int roomNum = scan.nextInt();
+			String roomNum = scan.nextLine();
 			
 			String eventInfo = scan.nextLine();
 			String[] split = eventInfo.split(" ");
 			LocalDate startDate = LocalDate.parse(split[0], dateFormat);
 			LocalDate endDate = LocalDate.parse(split[1], dateFormat);
 			
-			int userID = scan.nextInt();
+			//int userID = scan.nextInt();
+			String userID = scan.nextLine();
 			
-			int charges = scan.nextInt();
+			//int charges = scan.nextInt();
+			String charges = scan.nextLine();
 			
-			Reservation r = new Reservation(startDate, endDate, userID, roomNum, charges);
+			Reservation r = new Reservation(startDate, endDate, Integer.parseInt(userID), Integer.parseInt(roomNum), Integer.parseInt(charges));
 			reservations.add(r);
+			System.out.println(r.getRoomNumber());
 		}
 		scan.close();
 	}
