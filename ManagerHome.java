@@ -41,8 +41,8 @@ public class ManagerHome {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						//cal = new CalendarView(new GregorianCalendar());
-						//m.view();w
+						//frame.dispose();
+						new ManagerView();
 					}
 				});
 		
@@ -64,7 +64,8 @@ public class ManagerHome {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						m.quit();
+						frame.dispose();
+						System.exit(0);
 					}
 				});
 		

@@ -57,21 +57,13 @@ public class ManagerModel {
 		File file = new File ("reservations.txt");
 		
 	}
-	
-	public void view()
-	{
-		
-	}
+
 	
 	public void save()
 	{
 		
 	}
 	
-	public void quit()
-	{
-		
-	}
 	
 	
 	public void attach (ChangeListener l)

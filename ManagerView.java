@@ -14,7 +14,7 @@ public class ManagerView {
 	private static GregorianCalendar g;
 	private ManagerModel m;
 	
-	public static void main(String[] args)
+	public ManagerView()
 	{
 		g = new GregorianCalendar();
 		cal =  new CalendarView(g);
