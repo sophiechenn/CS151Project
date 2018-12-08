@@ -55,6 +55,25 @@ public class ManagerModel {
 	public void load()
 	{
 		File file = new File ("reservations.txt");
+		Scanner scan = new Scanner(file);
+		
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+
+		while (scan.hasNextLine())
+		{
+			int roomNum = scan.nextInt();
+			
+			String eventInfo = scan.nextLine();
+			String[] split = eventInfo.split(" ");
+			LocalDate startDate = LocalDate.parse(split[0], dateFormat);
+			LocalDate endDate = LocalDate.parse(split[1], dateFormat);
+			
+			int userID = scan.nextInt();
+			
+			int charges = scan.nextInt();
+			
+			Reservation r = new Reservation(startDate, endDate, userID, roomNum, charges);
+			reservations.add(r);
 		
 	}
 
