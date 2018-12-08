@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 public class ReservationGUI {
 	
-	public static void main (String[] args)
+	public ReservationGUI()
 	{
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,15 +1,11 @@
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 
-public class Room implements Serializable {
+
+public class Room {
 	private boolean isCurrent;
 	private String roomType;
 	private int roomNumber;
-	private LocalDate startDate;
-	private LocalDate endDate;
-	private Guest guest;
 	
 
 	/**
@@ -39,23 +35,6 @@ public class Room implements Serializable {
 		return roomNumber;
 	}
 
-	/**
-	 * Return the start date
-	 *
-	 * @return the start date
-	 */
-	public LocalDate getStartDate() {
-		return startDate;
-	}
-
-	/**
-	 * Return the end date
-	 *
-	 * @return the end date
-	 */
-	public LocalDate getEndDate() {
-		return endDate;
-	}
 
 	/**
 	 * Set the current status of the room
@@ -84,83 +63,6 @@ public class Room implements Serializable {
 	public void setRoomNumber(int rNumber) {
 		roomNumber = rNumber;
 	}
-	/**
-	 * Set the start date of the room
-	 * @param sDate the new start date
-	 */
-	public void setStartDate(LocalDate sDate) {
-		startDate = sDate;
-	}
-	/**
-	 * Set the new end date of the room
-	 * @param eDate the new end date
-	 */
-	public void setEndDate(LocalDate eDate) {
-		endDate = eDate;
-	}
-	/**
-	 * Set the guest that reserves this room
-	 * @param g the guest that reserves this room
-	 */
-	public void setGuest(Guest g) {
-		guest = g;
-	}
-	/**
-	 * Get the guest that reserves this room
-	 * @return the guest that reserves this room
-	 */
-	public Guest getGuest() {
-		return guest;
-	}
-	/**
-	 * Check if the room's time conflicts with other rooms
-	 * @param start the day user wants to check in
-	 * @param end the day user wants to check out
-	 * @return true if the room is available
-	 */
-	public boolean isClash(LocalDate start, LocalDate end) {
-		Room r1 = this;
-		if (r1.getStartDate().equals(start) && r1.getEndDate().equals(end)) {
-			return true;
-		}
-		if (r1.getStartDate().compareTo(end) <= 0 && start.compareTo(r1.getEndDate()) <= 0) {
-			return true;
-		}
-		return false;
-	}
-	/**
-	 * Check if this room equals the other room
-	 */
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null)
-			return false;
-		if (o.getClass() != getClass())
-			return false;
-		Room r = (Room) o;
 
-		return r.getCurrentStatus() == isCurrent && r.getStartDate().compareTo(startDate) == 0
-				&& r.getEndDate().compareTo(endDate) == 0 && r.getRoomNumber() == roomNumber
-				&& r.getRoomType().compareTo(roomType) == 0;
-	}
-	/**
-	 * Print the room information in a string format
-	 */
-	public String toString() {
-		String s = isCurrent + " " + roomType + " " + roomNumber + " " + startDate + " " + endDate;
-		return s;
-	}
-	/**
-	 * Calculate the price of this room based on the number of reserved days
-	 * @return the price of the room based on the	 number of reserved days
-	 */
-	public int getPrice() {
-		int difference = (int) (startDate.until(endDate, ChronoUnit.DAYS) + 1);
-		if (roomType.contains("300")) {
-			return difference * 300;
-		} else {
-			return difference * 100;
-		}
-	}
+	
 }

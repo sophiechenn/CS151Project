@@ -9,13 +9,15 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class ManagerHome {
+	private HotelReservationSystem s;
 
 	private ManagerModel m;
 	
-	public ManagerHome()
+	public ManagerHome(HotelReservationSystem s)
 	{		
+		this.s = s;
 		JFrame frame = new JFrame();
-		m = new ManagerModel();
+		m = new ManagerModel(s);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel buttonPanel = new JPanel();

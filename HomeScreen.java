@@ -5,9 +5,11 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class HomeScreen {
+	private HotelReservationSystem s;
 	
-	public HomeScreen()
+	public HomeScreen(HotelReservationSystem s)
 	{
+		this.s = s;
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Hotel Reservation");
@@ -23,7 +25,7 @@ public class HomeScreen {
 					public void actionPerformed (ActionEvent e)
 					{
 						frame.setVisible(false);
-						new ManagerHome();
+						new ManagerHome(s);
 						
 					}
 				});
@@ -34,7 +36,8 @@ public class HomeScreen {
 				{
 					public void actionPerformed (ActionEvent e)
 					{
-						frame.setVisible(false);
+						frame.dispose();
+						new UserPanel(s);
 					}
 				});
 		
