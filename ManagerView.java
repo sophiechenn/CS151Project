@@ -12,7 +12,7 @@ public class ManagerView {
 
 	private static CalendarView cal;
 	private static GregorianCalendar g;
-	private Manager m;
+	private ManagerModel m;
 	
 	public static void main(String[] args)
 	{

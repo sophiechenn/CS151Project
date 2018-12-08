@@ -49,5 +49,10 @@ public class Reservation {
 		return endDate;
 	}
 	
+	public void updateData(LocalDate s, LocalDate e)
+	{
+		startDate = s;
+		endDate = e;
+	}
 
 }

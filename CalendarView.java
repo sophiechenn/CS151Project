@@ -67,7 +67,7 @@ public class CalendarView{
 			{
 				JButton sourceButton = (JButton)e.getSource();
 				dateClicked = sourceButton.getText();
-				System.out.println(dateClicked);
+				//System.out.println(dateClicked);
 			}
 		};
 		

@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -21,11 +22,11 @@ public class GuestModel{
 	 * Returns a formatted string of current available rooms of a room type
 	 * @param type the room type requested
 	 * @return s a string with data of current available rooms
-	 */	
+	 *//*	
 	public String getRooms(String type) {
 		//call method
 		return re.getRooms(type);
-	}
+	}*/
 
 	/**
 	 * @param ID of guest
@@ -125,7 +126,7 @@ public class GuestModel{
 	 * @precondition: date is valid, meaning, end date does not precede start date
 	 * @postcondition: guest data and room availability is updated
 	 */
-	public void updateData(Date s, Date e) {
+	public void updateData(LocalDate s, LocalDate e) {
 		//call method
 		re.updateData(s, e);
 	}

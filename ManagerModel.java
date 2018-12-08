@@ -4,16 +4,23 @@ import java.util.GregorianCalendar;
 
 import javax.swing.event.ChangeListener;
 
-public class Manager {
+public class ManagerModel {
 
 	private GregorianCalendar cal;
 	
 	private ArrayList<ChangeListener> listeners;
+	private ArrayList<Room> rooms;
+	private ArrayList<Reservation> reservations;
+	private ArrayList<Guest> guests;
 	
-	public Manager()
+	public ManagerModel()
 	{
 		cal = new GregorianCalendar();
 		listeners = new ArrayList<ChangeListener>();
+		rooms = new ArrayList<Room>();
+		reservations = new ArrayList<Reservation>();
+		guests = new ArrayList<Guest>();
+		
 	}
 	
 	public void load()

@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -8,15 +9,29 @@ import java.util.Date;
 public class Guest implements Comparable<Guest>, Serializable{
     private int userID;
     private String username;
-    private Date startDate;
-    private Date endDate;
+    private String password;
+    private ArrayList<Reservation> reservations;
     
     //testing purposes.
-    public Guest(int ID, String user) {
+    public Guest(int ID, String user, String pass) {
         userID = ID;
         username = user;
+        reservations = new ArrayList<Reservation>();
+        password = pass;
     }
     
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public ArrayList<Reservation> getReservations() {
+		return reservations;
+	}
+
 	/**
 	 * Returns the guest user's ID
 	 * @return userID of the guest
@@ -33,22 +48,6 @@ public class Guest implements Comparable<Guest>, Serializable{
         return username;
     }
     
-    /**
-	 * Returns the check in date of the guest
-	 * @return the check in date of the guest
-	 */
-    public Date getStartDate() {
-        return startDate;
-    }
-    
-	/**
-	 * Returns the check out date of the guest
-	 * @return the check out date of the guest
-	 */
-    public Date getEndDate() {
-        return endDate;
-    }
-    
 	/**
 	 * Sets the user ID of the guest
 	 * @param ID the new user ID
@@ -58,23 +57,6 @@ public class Guest implements Comparable<Guest>, Serializable{
         userID = ID;
     }
     
-	/**
-	 * Sets the start date of the guest
-	 * @param sDate the new start date
-	 * @postcondition: start date of the guest is set to the new start date
-	 */
-    public void setStartDate(Date sDate) {
-        startDate = sDate;
-    }
-    
-	/**
-	 * Sets the end date of the guest
-	 * @param eDate the new end date
-	 * @postcondition: end date of the guest is set to the new end date
-	 */
-    public void setEndDate(Date eDate) {
-        endDate = eDate;
-    }
     
 	/**
 	 * Sets the username of the guest

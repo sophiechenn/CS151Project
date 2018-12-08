@@ -9,7 +9,7 @@ import javax.swing.event.ChangeListener;
 
 public class ManagerHome {
 
-	private Manager m;
+	private ManagerModel m;
 	
 	public ManagerHome()
 	{		
