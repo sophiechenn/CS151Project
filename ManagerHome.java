@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.util.GregorianCalendar;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class ManagerHome {
 	public ManagerHome()
 	{		
 		JFrame frame = new JFrame();
+		m = new ManagerModel();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel buttonPanel = new JPanel();
@@ -30,7 +32,12 @@ public class ManagerHome {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						m.load();
+						try {
+							m.load();
+						} catch (FileNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
 				});
 		
@@ -42,7 +49,7 @@ public class ManagerHome {
 					public void actionPerformed(ActionEvent e)
 					{
 						//frame.dispose();
-						new ManagerView();
+						m.view();
 					}
 				});
 		
@@ -64,7 +71,6 @@ public class ManagerHome {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						frame.dispose();
 						System.exit(0);
 					}
 				});

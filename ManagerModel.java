@@ -1,8 +1,11 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 import javax.swing.event.ChangeListener;
 
@@ -23,27 +26,31 @@ public class ManagerModel {
 		reservations = new ArrayList<Reservation>();
 		guests = new ArrayList<Guest>();
 		
+		Guest g1 = new Guest(1,"1","1");
+		Guest g2 = new Guest(2,"2","2");
+		Guest g3 = new Guest(3,"3","3");
+		
 		Room one = new Room();
 		one.setCurrentStatus(true);
 		LocalDate eDate = LocalDate.now();
 		one.setStartDate(eDate);
 		one.setEndDate(eDate.plusDays(7));
 		one.setRoomNumber(101);
-		one.setGuest(new Guest(1,"1","1"));
+		one.setGuest(g1);
 		
 		Room two = new Room();
 		two.setCurrentStatus(true);
 		two.setStartDate(eDate);
 		two.setEndDate(eDate.plusDays(8));
 		two.setRoomNumber(102);
-		two.setGuest(new Guest(1,"1","1"));
+		two.setGuest(g2);
 		
 		Room three = new Room();
 		three.setCurrentStatus(true);
 		three.setStartDate(eDate);
 		three.setEndDate(eDate.plusDays(7));
 		three.setRoomNumber(103);
-		three.setGuest(new Guest(1,"1","1"));
+		three.setGuest(g3);
 		
 		rooms.add(one);
 		rooms.add(two);
@@ -52,9 +59,9 @@ public class ManagerModel {
 		
 	}
 	
-	public void load()
+	public void load() throws FileNotFoundException
 	{
-		File file = new File ("reservations.txt");
+		File file = new File ("src/reservations.txt");
 		Scanner scan = new Scanner(file);
 		
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
@@ -74,13 +81,19 @@ public class ManagerModel {
 			
 			Reservation r = new Reservation(startDate, endDate, userID, roomNum, charges);
 			reservations.add(r);
-		
+		}
+		scan.close();
 	}
 
 	
 	public void save()
 	{
 		
+	}
+	
+	public void view()
+	{
+		new ManagerView();
 	}
 	
 	
