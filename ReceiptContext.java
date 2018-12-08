@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class ReceiptContext 
 {
@@ -6,5 +7,10 @@ public class ReceiptContext
      public ReceiptContext(ReceiptStrategy receiptStrategy)
      {
     	 this.receiptStrategy = receiptStrategy;
+     }
+     
+     public void executeStrategy()
+     {
+    	 receiptStrategy.printReceipt();
      }
 }

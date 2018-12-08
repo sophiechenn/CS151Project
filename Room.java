@@ -1,13 +1,16 @@
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class Room implements Serializable {
 	private boolean isCurrent;
 	private String roomType;
 	private int roomNumber;
-	private Date startDate;
-	private Date endDate;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	private Guest guest;
+	
 
 	/**
 	 * Return the current status of the room
@@ -41,7 +44,7 @@ public class Room implements Serializable {
 	 *
 	 * @return the start date
 	 */
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
@@ -50,7 +53,7 @@ public class Room implements Serializable {
 	 *
 	 * @return the end date
 	 */
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
@@ -85,14 +88,14 @@ public class Room implements Serializable {
 	 * Set the start date of the room
 	 * @param sDate the new start date
 	 */
-	public void setStartDate(Date sDate) {
+	public void setStartDate(LocalDate sDate) {
 		startDate = sDate;
 	}
 	/**
 	 * Set the new end date of the room
 	 * @param eDate the new end date
 	 */
-	public void setEndDate(Date eDate) {
+	public void setEndDate(LocalDate eDate) {
 		endDate = eDate;
 	}
 	/**
@@ -115,7 +118,7 @@ public class Room implements Serializable {
 	 * @param end the day user wants to check out
 	 * @return true if the room is available
 	 */
-	public boolean isClash(Date start, Date end) {
+	public boolean isClash(LocalDate start, LocalDate end) {
 		Room r1 = this;
 		if (r1.getStartDate().equals(start) && r1.getEndDate().equals(end)) {
 			return true;
@@ -153,12 +156,11 @@ public class Room implements Serializable {
 	 * @return the price of the room based on the	 number of reserved days
 	 */
 	public int getPrice() {
-		@SuppressWarnings("deprecation")
-		int difference = endDate.getDate() - startDate.getDate() + 1;
-		if (roomType.contains("Luxury")) {
-			return difference * 200;
+		int difference = (int) (startDate.until(endDate, ChronoUnit.DAYS) + 1);
+		if (roomType.contains("300")) {
+			return difference * 300;
 		} else {
-			return difference * 80;
+			return difference * 100;
 		}
 	}
 }

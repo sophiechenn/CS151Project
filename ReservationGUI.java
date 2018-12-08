@@ -25,7 +25,7 @@ public class ReservationGUI {
 		
 		mButton.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent e) {
-						new MakeReservation();
+						new ReservationMake();
 					}
 				});
 		vButton.addActionListener(new ActionListener(){
