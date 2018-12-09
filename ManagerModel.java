@@ -30,7 +30,7 @@ public class ManagerModel {
 		File file = new File ("src/reservations.txt");
 		Scanner scan = new Scanner(file);
 		
-		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-LLLL-dd");
 
 		while (scan.hasNextLine())
 		{
@@ -80,7 +80,7 @@ public class ManagerModel {
 	
 	public void view()
 	{
-		new ManagerView();
+		new ManagerView(s);
 	}
 	
 	

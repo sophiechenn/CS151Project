@@ -29,6 +29,28 @@ public class Reservation {
 	public String getRoomType() {
 		return roomType;
 	}
+	
+	/*public int compareTo(Reservation res)
+	{
+		if(this.roomNumber == res.roomNumber)
+		{
+			if (this.userId == res.userId)
+			{
+				if (this.noConflict(startDate, endDate))
+				{
+					return 0;
+				}
+			}
+		}
+		return 1;
+	}
+	
+	public boolean equals(Object o)
+	{
+		Reservation r = (Reservation)o;
+		return this.compareTo(r) == 0;
+		
+	}*/
 
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
@@ -83,11 +105,15 @@ public class Reservation {
 		{
 			return false;
 		}
-		else if(start.isAfter(startDate) && start.isBefore(endDate))
+		if(start.isAfter(startDate) && start.isBefore(endDate))
 		{
 			return false;
 		}
-		else if(start.isEqual(startDate) || end.isEqual(endDate))
+		if(start.isEqual(startDate) || end.isEqual(endDate))
+		{
+			return false;
+		}
+		if (start.compareTo(startDate)==0 || end.compareTo(endDate)==0)
 		{
 			return false;
 		}

@@ -6,6 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -161,8 +164,10 @@ public class ReservationMake {
 					String available = "";
 					for(Reservation r: s.getReservations())
 					{
-						if (r.noConflict(startDate, endDate))
+						System.out.println(r.getRoomType());
+						if (!r.noConflict(startDate, endDate))
 						{
+							//System.out.println(r.getRoomType());
 							for(Room room: s.getRooms())
 							{
 								if (r.getRoomNumber() == room.getRoomNumber())
@@ -187,6 +192,7 @@ public class ReservationMake {
 			}
 		});
 
+		
 		
 
 		JTextField desiredRoom = new JTextField("Enter your desired room number");
@@ -360,6 +366,26 @@ public class ReservationMake {
 
 		frame.setSize(500, 500);
 		frame.setVisible(true);
+	}
+	
+	public void save()
+	{
+		try {
+			FileWriter bw = new FileWriter("src/reservations.txt");
+			BufferedWriter fw = new BufferedWriter(bw);
+			for (Reservation r : s.getReservations())
+			{
+				fw.write(r.getRoomNumber() + "\n");
+				fw.write(r.getRoomType() + "\n");
+				fw.write(r.getStartDate() + " " + r.getEndDate() + "\n");
+				fw.write(r.getUserId() + "\n");
+				fw.write(r.getCharges() + "\n");
+			}
+			fw.close();
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

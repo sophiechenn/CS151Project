@@ -14,7 +14,7 @@ public class ManagerHome {
 	private ManagerModel m;
 	
 	public ManagerHome(HotelReservationSystem s)
-	{		
+	{
 		this.s = s;
 		JFrame frame = new JFrame();
 		m = new ManagerModel(s);

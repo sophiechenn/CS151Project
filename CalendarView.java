@@ -35,29 +35,9 @@ public class CalendarView{
 
 		JPanel buttonPanel = new JPanel();
 		JButton advance = new JButton(">");
-		advance.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				
-				c.add(Calendar.MONTH, 1);
-				System.out.println(getMonth(c));
-				System.out.println(c.get(Calendar.MONTH));
-				printCalendarDays(new GregorianCalendar(2019, c.get(Calendar.MONTH), 1));
-				month.repaint();
-			}
-		});
+		
 		JButton back = new JButton("<");
-		back.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				c.add(Calendar.MONTH, -1);
-				System.out.println(getMonth(c));
-				printCalendarDays(c);
-				month.repaint();
-			}
-		});		
+			
 
 		month = new JPanel();
 		month.setLayout(new GridLayout(7, 7));
@@ -78,6 +58,29 @@ public class CalendarView{
 		jeff.setVisible(true);
 		jeff.setSize(400, 400);
 		jeff.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);*/
+		/*advance.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				
+				c.add(Calendar.MONTH, 1);
+				System.out.println(getMonth(c));
+				System.out.println(c.get(Calendar.MONTH));
+				printCalendarDays(new GregorianCalendar(2019, c.get(Calendar.MONTH), 1));
+				month.repaint();
+			}
+		});
+		
+		back.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				c.add(Calendar.MONTH, -1);
+				System.out.println(getMonth(c));
+				printCalendarDays(c);
+				month.repaint();
+			}
+		});	*/
 	}
 
 	public void addChangeListener(ChangeListener listener)
@@ -85,6 +88,7 @@ public class CalendarView{
 		listeners.add(listener);
 	}
 	public String getDateClicked() {
+		
 		return dateClicked;
 	}
 
@@ -112,7 +116,8 @@ public class CalendarView{
 			{
 				JButton sourceButton = (JButton)e.getSource();
 				dateClicked = sourceButton.getText();
-				//System.out.println(dateClicked);
+				System.out.println(dateClicked);
+				
 			}
 		};
 

@@ -54,6 +54,14 @@ public class HotelReservationSystem {
 	public Guest getCurrentGuest() {
 		return currentGuest;
 	}
+	
+	public void reset()
+	{
+		for(Room r: rooms)
+		{
+			r.setAvailable(true);
+		}
+	}
 
 	public void setCurrentGuest(Guest currentGuest) {
 		this.currentGuest = currentGuest;
@@ -81,12 +89,16 @@ public class HotelReservationSystem {
 		reservations.add(r);
 	}
 	
+	
 	public void delReservation(Reservation r)
 	{
 		for(Reservation res: reservations)
 		{
 			if(res.equals(r))
+			{
 				reservations.remove(r);
+				return;
+			}
 		}
 	}
 }

@@ -13,10 +13,11 @@ public class ViewReservation {
 	public ViewReservation(HotelReservationSystem s)
 	{
 		JFrame jeff = new JFrame();
-		JPanel panel = new JPanel();
 		this.s = s;
+		JPanel panel = new JPanel();
 		for (Reservation r: s.getCurrentGuest().getReservations())
 		{
+			
 			JLabel label = new JLabel(r.getRoomNumber() + " " + r.getStartDate() + " to " + r.getEndDate());
 			JButton button = new JButton("Cancel this reservation");
 			button.addActionListener(new ActionListener(){
@@ -24,11 +25,16 @@ public class ViewReservation {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					s.delReservation(r);
+					panel.remove(label);
+					panel.remove(button);
+					panel.revalidate();
+					panel.repaint();
 				}
 				
 			});
 			panel.add(label);
 			panel.add(button);
+			
 		}
 		jeff.add(panel);
 		jeff.setVisible(true);
