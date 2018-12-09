@@ -30,7 +30,7 @@ public class ReservationMake {
 	private HotelReservationSystem s;
 	public ReservationMake(HotelReservationSystem s)
 	{
-		//res = new Reservation(null,null,0,0,0,"");
+		res = new Reservation(null,null,0,0,0,"");
 		this.s = s;
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,7 +107,23 @@ public class ReservationMake {
 	    c.gridx = 0;
 	    c.gridy = 1;
 	    frame.add(button, c);*/
+		
+		LocalDate startDate = LocalDate.parse(jf.getText(), formatter);
+		LocalDate endDate = LocalDate.parse(jf2.getText(), formatter);
+		String roomType = jf3.getText();
 
+		JTextArea availableRooms = new JTextArea("Available Rooms");
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weighty = 3;
+		c.weightx = 2;
+		c.gridx = 0;
+		c.gridy = 3;
+		c.ipady = 100;
+		c.ipadx = 100;
+
+		availableRooms.setEditable(false);
+		frame.add(availableRooms, c);
+		
 		JButton showme = new JButton("Show Me");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipady = 0;       //reset to default
@@ -121,21 +137,50 @@ public class ReservationMake {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				if (startDate.isBefore(LocalDate.now()) || endDate.isBefore(LocalDate.now()))
+				{
+					availableRooms.setText("Check in and Check out date cannot be before today");
+				}
+				else if(endDate.minusDays(61).isAfter(startDate))
+				{
+					availableRooms.setText("Duration of stay max 60 nights");
+				}
+				else if(!jf3.getText().equals("100") && !jf3.getText().equals("300"))
+				{
+					availableRooms.setText("Select either 100 or 300 for room types");
+				}
+				else
+				{
+					String available = "";
+					for(Reservation r: s.getReservations())
+					{
+						if (r.noConflict(startDate, endDate))
+						{
+							for(Room room: s.getRooms())
+							{
+								if (r.getRoomNumber() == room.getRoomNumber())
+								{
+									room.setAvailable(false);
+								}
+							}
+						}
+					}
 
+					for(Room room: s.getRooms())
+					{
+						if (room.isAvailable())
+						{
+							available += room.getRoomNumber() + "\n";
+						}
+					}
+
+					//for(Room room: s.get)
+					availableRooms.setText(available);
+				}
 			}
 		});
 
-		JTextArea availableRooms = new JTextArea("Available Rooms");
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weighty = 3;
-		c.weightx = 2;
-		c.gridx = 0;
-		c.gridy = 3;
-		c.ipady = 100;
-		c.ipadx = 100;
-
-		availableRooms.setEditable(false);
-		frame.add(availableRooms, c);
+		
 
 		JTextField desiredRoom = new JTextField("Enter your desired room number");
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -184,7 +229,7 @@ public class ReservationMake {
 
 
 
-		DocumentListener documentlistener = new DocumentListener(){
+		/*DocumentListener documentlistener = new DocumentListener(){
 
 			public void changedUpdate(DocumentEvent e) {
 				warn();
@@ -250,61 +295,22 @@ public class ReservationMake {
 
 		jf.getDocument().addDocumentListener(documentlistener);
 		jf2.getDocument().addDocumentListener(documentlistener);
-		jf2.getDocument().addDocumentListener(documentlistener);
+		jf2.getDocument().addDocumentListener(documentlistener);*/
 
-		/*ChangeListener change = new ChangeListener()
+		ChangeListener change = new ChangeListener()
 		{
 			public void stateChanged(ChangeEvent e)
 			{
-				LocalDate startDate = LocalDate.parse(jf.getText(), formatter);
+				//LocalDate startDate = LocalDate.parse(jf.getText(), formatter);
 				res.setStartDate(startDate);
-				LocalDate endDate = LocalDate.parse(jf2.getText(), formatter);
+				//LocalDate endDate = LocalDate.parse(jf2.getText(), formatter);
 				res.setEndDate(endDate);
-				String roomType = jf3.getText();
+				//String roomType = jf3.getText();
 				res.setRoomType(roomType);
-				if (startDate.isBefore(LocalDate.now()) || endDate.isBefore(LocalDate.now()))
-				{
-					availableRooms.setText("Check in and Check out date cannot be before today");
-				}
-				else if(endDate.minusDays(61).isAfter(startDate))
-				{
-					availableRooms.setText("Duration of stay max 60 nights");
-				}
-				else if(!jf3.getText().equals("100") && !jf3.getText().equals("300"))
-				{
-					availableRooms.setText("Select either 100 or 300 for room types");
-				}
-				else
-				{
-					String available = "";
-					for(Reservation r: s.getReservations())
-					{
-						if (r.noConflict(startDate, endDate))
-						{
-							for(Room room: s.getRooms())
-							{
-								if (r.getRoomNumber() == room.getRoomNumber())
-								{
-									room.setAvailable(false);
-								}
-							}
-						}
-					}
 
-					for(Room room: s.getRooms())
-					{
-						if (room.isAvailable())
-						{
-							available += room.getRoomNumber() + "\n";
-						}
-					}
-
-					//for(Room room: s.get)
-					availableRooms.setText(available);
-				}
 			}
 		};
-		res.addChangeListener(change);*/
+		res.addChangeListener(change);
 
 		frame.setSize(500, 500);
 		frame.setVisible(true);
