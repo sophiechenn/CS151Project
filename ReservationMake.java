@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,7 +26,7 @@ public class ReservationMake {
 	final static boolean shouldWeightX = true;
 	final static boolean RIGHT_TO_LEFT = false;
 	private Reservation res;
-
+	
 	private HotelReservationSystem s;
 	public ReservationMake(HotelReservationSystem s)
 	{
@@ -197,11 +198,11 @@ public class ReservationMake {
 
 			public void warn()
 			{
-				LocalDate startDate = LocalDate.parse(jf.getText(), formatter);
+				startDate = LocalDate.parse(jf.getText(), formatter);
 				//res.setStartDate(startDate);
-				LocalDate endDate = LocalDate.parse(jf2.getText(), formatter);
+				endDate = LocalDate.parse(jf2.getText(), formatter);
 				//res.setEndDate(endDate);
-				String roomType = jf3.getText();
+				roomType = jf3.getText();
 				//res.setRoomType(roomType);
 				if (startDate.isBefore(LocalDate.now()) || endDate.isBefore(LocalDate.now()))
 				{
