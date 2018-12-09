@@ -24,7 +24,7 @@ public class HomeScreen {
 				{
 					public void actionPerformed (ActionEvent e)
 					{
-						frame.setVisible(false);
+						frame.dispose();
 						new ManagerHome(s);
 						
 					}
