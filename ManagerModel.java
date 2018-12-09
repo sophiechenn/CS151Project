@@ -1,9 +1,10 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
@@ -61,7 +62,20 @@ public class ManagerModel {
 	
 	public void save()
 	{
-		
+		try {
+			FileWriter fw = new FileWriter("src/reservations.txt");
+			for (Reservation r : s.getReservations())
+			{
+				fw.write(r.getRoomNumber() + "\n");
+				fw.write(r.getRoomType() + "\n");
+				fw.write(r.getStartDate() + " " + r.getEndDate() + "\n");
+				fw.write(r.getUserId() + "\n");
+				fw.write(r.getCharges() + "\n");
+			}
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void view()
