@@ -42,6 +42,10 @@ public class HotelReservationSystem {
 		guests.add(g2);
 		guests.add(g3);
 		
+		Reservation r = new Reservation(LocalDate.now(), LocalDate.now(), 1, 103, 100, "100");
+		reservations.add(r);
+		g1.addReservation(r);
+		
 		rooms.add(one);
 		rooms.add(two);
 		rooms.add(three);
@@ -75,5 +79,14 @@ public class HotelReservationSystem {
 	public void addReservation(Reservation r)
 	{
 		reservations.add(r);
+	}
+	
+	public void delReservation(Reservation r)
+	{
+		for(Reservation res: reservations)
+		{
+			if(res.equals(r))
+				reservations.remove(r);
+		}
 	}
 }

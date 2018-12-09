@@ -40,17 +40,18 @@ public class ComprehensiveReceiptGUI implements ReceiptStrategy
     	namePanel.add(name);
     	*/
     	reservedRoomsPanel.add(new JLabel("Rooms to be reserved currently : "));
-    	JTextArea roomNum = new JTextArea(Integer.toString(reservations.get(reservations.size() - 1).getRoomNumber()));
+    	/*JTextArea roomNum = new JTextArea(Integer.toString(reservations.get(reservations.size() - 1).getRoomNumber()));
     	reservedRoomsPanel.add(roomNum);
+    	*/for(Reservation r: reservations)
+    	{
+    		JLabel roomNum = new JLabel(Integer.toString(r.getRoomNumber()));
+        	reservedRoomsPanel.add(roomNum);
+    	}
     	
     	totalDuesPanel.add(new JLabel("Total Dues for all reservations:"));
     	this.getTotalDues();
     	totalDuesPanel.add(new JLabel("$" + Integer.toString(totalDue)));
     	detailPanel.add(new JLabel("Rooms reservation history"));
-    	for (int i=0; i < reservations.size(); i++)
-    	{
-    		detailRooms += reservations.get(i).toString();
-    	}
     	JTextArea detailRoomsArea = new JTextArea(detailRooms);
     	detailPanel.add(detailRoomsArea);
     	this.printReceipt();

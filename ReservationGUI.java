@@ -31,7 +31,7 @@ public class ReservationGUI {
 				});
 		vButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				new ViewReservation();
+				new ViewReservation(s);
 			}
 		});
 		

@@ -39,10 +39,12 @@ public class CalendarView{
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				
 				c.add(Calendar.MONTH, 1);
 				System.out.println(getMonth(c));
 				System.out.println(c.get(Calendar.MONTH));
 				printCalendarDays(new GregorianCalendar(2019, c.get(Calendar.MONTH), 1));
+				month.repaint();
 			}
 		});
 		JButton back = new JButton("<");
@@ -53,6 +55,7 @@ public class CalendarView{
 				c.add(Calendar.MONTH, -1);
 				System.out.println(getMonth(c));
 				printCalendarDays(c);
+				month.repaint();
 			}
 		});		
 
