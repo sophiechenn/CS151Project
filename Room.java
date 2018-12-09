@@ -3,7 +3,7 @@ import java.time.temporal.ChronoUnit;
 
 
 public class Room {
-	private boolean isCurrent;
+	private boolean available;
 	private String roomType;
 	private int roomNumber;
 	
@@ -13,8 +13,8 @@ public class Room {
 	 *
 	 * @return the current status of the room
 	 */
-	public boolean getCurrentStatus() {
-		return isCurrent;
+	public boolean isAvailable() {
+		return available;
 	}
 
 	/**
@@ -42,8 +42,8 @@ public class Room {
 	 * @param status
 	 *            the new status of the room
 	 */
-	public void setCurrentStatus(boolean status) {
-		isCurrent = status;
+	public void setAvailable(boolean status) {
+		available = status;
 	}
 
 	/**

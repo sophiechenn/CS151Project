@@ -22,17 +22,17 @@ public class HotelReservationSystem {
 		Guest g3 = new Guest(3,"3","3");
 		
 		Room one = new Room();
-		one.setCurrentStatus(true);
+		one.setAvailable(true);
 		LocalDate eDate = LocalDate.now();
 		one.setRoomNumber(101);
 		
 		Room two = new Room();
-		two.setCurrentStatus(true);
+		two.setAvailable(true);
 		two.setRoomNumber(102);
 
 		
 		Room three = new Room();
-		three.setCurrentStatus(true);
+		three.setAvailable(true);
 		
 		three.setRoomNumber(103);
 	
