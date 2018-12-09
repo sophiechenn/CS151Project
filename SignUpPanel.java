@@ -71,7 +71,7 @@ public class SignUpPanel{
 				s.addGuest(gg);
 				frame.dispose();
 				s.setCurrentGuest(gg);
-				new ReservationGUI();
+				new ReservationGUI(s);
 				
 			}
 

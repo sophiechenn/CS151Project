@@ -25,8 +25,10 @@ public class ReservationMake {
 	final static boolean shouldWeightX = true;
 	final static boolean RIGHT_TO_LEFT = false;
 
-	public ReservationMake()
+	private HotelReservationSystem s;
+	public ReservationMake(HotelReservationSystem s)
 	{
+		this.s = s;
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBackground(new Color(0,100,100));
@@ -64,7 +66,7 @@ public class ReservationMake {
 		frame.add(lb3, c);
 
 		LocalDate localDate = LocalDate.now();//For reference
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("LLLL dd yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("LLLL/dd/yyyy");
 		String formattedString = localDate.format(formatter);
 
 		JTextField jf = new JTextField(formattedString);
@@ -135,7 +137,7 @@ public class ReservationMake {
 		frame.add(desiredRoom, c);
 
 
-		button = new JButton("Confirm");
+		JButton confirm = new JButton("Confirm");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipady = 0;       //reset to default
 		c.weighty = 1.0;   //request any extra vertical space
@@ -144,9 +146,9 @@ public class ReservationMake {
 		c.gridx = 0;       //aligned with button 2
 		c.gridwidth = 1;   //2 columns wide
 		c.gridy = 4;       //third row
-		frame.add(button, c);
+		frame.add(confirm, c);
 
-		button = new JButton("More Reservations?");
+		JButton more = new JButton("More Reservations?");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipady = 0;       //reset to default
 		c.weighty = 1.0;   //request any extra vertical space
@@ -155,9 +157,9 @@ public class ReservationMake {
 		c.gridx = 1;       //aligned with button 2
 		c.gridwidth = 1;   //2 columns wide
 		c.gridy = 4;       //third row
-		frame.add(button, c);
+		frame.add(more, c);
 
-		button = new JButton("Done");
+		JButton done = new JButton("Done");
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.ipady = 0;       //reset to default
 		c.weighty = 1.0;   //request any extra vertical space
@@ -166,7 +168,7 @@ public class ReservationMake {
 		c.gridx = 2;       //aligned with button 2
 		c.gridwidth = 1;   //2 columns wide
 		c.gridy = 4;       //third row
-		frame.add(button, c);
+		frame.add(done, c);
 
 
 
@@ -188,6 +190,7 @@ public class ReservationMake {
 			{
 				LocalDate startDate = LocalDate.parse(jf.getText(), formatter);
 				LocalDate endDate = LocalDate.parse(jf2.getText(), formatter);
+				String roomType = jf3.getText();
 				if (startDate.isBefore(LocalDate.now()) || endDate.isBefore(LocalDate.now()))
 				{
 					availableRooms.setText("Check in and Check out date cannot be before today");
@@ -202,7 +205,16 @@ public class ReservationMake {
 	  			    }
 				else
 				{
-					//show rooms
+					String rooms = "";
+					for(Reservation r: s.getReservations())
+					{
+						if (!r.isConflict(startDate, endDate, roomType))
+						{
+							rooms+= r.getRoomNumber();
+							rooms += "\n";
+						}
+					}
+					availableRooms.setText(rooms);
 				}
 			}
 

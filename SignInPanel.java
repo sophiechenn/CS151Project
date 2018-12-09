@@ -63,7 +63,7 @@ public class SignInPanel {
 					{
 						frame.dispose();
 						s.setCurrentGuest(g);
-						new ReservationGUI();
+						new ReservationGUI(s);
 					}
 					else
 						JOptionPane.showMessageDialog(null, "Please enter valid id and password");

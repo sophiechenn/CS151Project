@@ -8,9 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class ReservationGUI {
-	
-	public ReservationGUI()
+	private HotelReservationSystem s;
+	public ReservationGUI(HotelReservationSystem s)
 	{
+		this.s = s;
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Reservation");
@@ -25,7 +26,7 @@ public class ReservationGUI {
 		
 		mButton.addActionListener(new ActionListener(){
 					public void actionPerformed(ActionEvent e) {
-						new ReservationMake();
+						new ReservationMake(s);
 					}
 				});
 		vButton.addActionListener(new ActionListener(){

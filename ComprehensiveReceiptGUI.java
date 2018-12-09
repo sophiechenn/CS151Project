@@ -8,11 +8,14 @@ public class ComprehensiveReceiptGUI implements ReceiptStrategy
     //private JPanel namePanel;
     private JPanel reservedRoomsPanel;
     private JPanel totalDuesPanel;    
-
+    private JPanel detailPanel;
+    
     private String userId;
     //private String name;
     private String roomNum;
     private int totalDue;
+    
+    private String detailRooms;
     
     private ArrayList<Reservation> reservations;  
     
@@ -25,6 +28,7 @@ public class ComprehensiveReceiptGUI implements ReceiptStrategy
     	//namePanel = new JPanel();
     	reservedRoomsPanel = new JPanel();
     	totalDuesPanel = new JPanel();
+    	detailPanel = new JPanel();
     	
     	userIdPanel.add(new JLabel("User ID: ")); 	
     	JTextArea userId = new JTextArea(Integer.toString(reservations.get(0).getUserId()));
@@ -38,10 +42,19 @@ public class ComprehensiveReceiptGUI implements ReceiptStrategy
     	JTextArea roomNum = new JTextArea(Integer.toString(reservations.get(reservations.size() - 1).getRoomNumber()));
     	reservedRoomsPanel.add(roomNum);
     	
-    	totalDuesPanel.add(new JLabel("Total Dues:"));
+    	totalDuesPanel.add(new JLabel("Total Dues for all reservations:"));
     	this.getTotalDues();
     	totalDuesPanel.add(new JLabel("$" + Integer.toString(totalDue)));
+    	detailPanel.add(new JLabel("Rooms reservation history"));
+    	for (int i=0; i < reservations.size(); i++)
+    	{
+    		detailRooms += reservations.get(i).toString();
+    	}
+    	JTextArea detailRoomsArea = new JTextArea(detailRooms);
+    	detailPanel.add(detailRoomsArea);
     	this.printReceipt();
+    	
+    	
     }
     
     public void printReceipt()
@@ -50,7 +63,8 @@ public class ComprehensiveReceiptGUI implements ReceiptStrategy
     	//receiptFrame.add(namePanel);
     	receiptFrame.add(userIdPanel);
     	receiptFrame.add(reservedRoomsPanel);
-    	receiptFrame.add(totalDuesPanel);    	
+    	receiptFrame.add(totalDuesPanel);
+    	receiptFrame.add(detailPanel);
     	receiptFrame.pack();
     	receiptFrame.setVisible(true);
     }
