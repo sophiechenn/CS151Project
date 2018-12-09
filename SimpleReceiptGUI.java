@@ -19,6 +19,7 @@ public class SimpleReceiptGUI implements ReceiptStrategy
     
     SimpleReceiptGUI(ArrayList<Reservation> reservations)
     {
+    	this.reservations = reservations;
     	receiptFrame = new JFrame("Simple Receipt");
     	userIdPanel = new JPanel();
     	namePanel = new JPanel();
@@ -26,7 +27,7 @@ public class SimpleReceiptGUI implements ReceiptStrategy
     	totalDuesPanel = new JPanel();
     	
     	userIdPanel.add(new JLabel("User ID: ")); 	
-    	JTextArea userId = new JTextArea(Integer.toString(reservations.get(0).getUserId()));
+    	JLabel userId = new JLabel(Integer.toString(reservations.get(0).getUserId()));
     	userIdPanel.add(userId);
     	
     	/*namePanel.add(new JLabel("Guest Name: ")); 	
@@ -34,8 +35,12 @@ public class SimpleReceiptGUI implements ReceiptStrategy
     	namePanel.add(name);*/
     	
     	reservedRoomsPanel.add(new JLabel("Rooms to be reserved: "));
-    	JTextArea roomNum = new JTextArea(Integer.toString(reservations.get(reservations.size() - 1).getRoomNumber()));
-    	reservedRoomsPanel.add(roomNum);
+    	for(Reservation r: reservations)
+    	{
+    		JLabel roomNum = new JLabel(Integer.toString(r.getRoomNumber()));
+        	reservedRoomsPanel.add(roomNum);
+    	}
+    	
     	
     	totalDuesPanel.add(new JLabel("Total Dues:"));
     	this.getTotalDues();
@@ -58,7 +63,11 @@ public class SimpleReceiptGUI implements ReceiptStrategy
     
     public void getTotalDues()
     {
-        totalDue = reservations.get(reservations.size() - 1 ).getCharges();
+    	for(Reservation r: reservations)
+    	{
+    		totalDue += r.getCharges();
+    
+    	}
     }
 
 }

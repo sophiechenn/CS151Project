@@ -24,22 +24,24 @@ public class HotelReservationSystem {
 		Room one = new Room();
 		one.setAvailable(true);
 		LocalDate eDate = LocalDate.now();
+		one.setRoomType("100");
 		one.setRoomNumber(101);
 		
 		Room two = new Room();
 		two.setAvailable(true);
 		two.setRoomNumber(102);
-
+		two.setRoomType("100");
 		
 		Room three = new Room();
 		three.setAvailable(true);
-		
+		three.setRoomType("100");
 		three.setRoomNumber(103);
 	
 	
 		guests.add(g1);
 		guests.add(g2);
 		guests.add(g3);
+		
 		rooms.add(one);
 		rooms.add(two);
 		rooms.add(three);

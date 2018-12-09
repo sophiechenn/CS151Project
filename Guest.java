@@ -24,6 +24,11 @@ public class Guest implements Comparable<Guest>, Serializable{
 		return password;
 	}
 
+	public void addReservation(Reservation r)
+	{
+		reservations.add(r);
+	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}

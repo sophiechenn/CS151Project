@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,10 +27,15 @@ public class ReservationMake {
 	final static boolean shouldWeightX = true;
 	final static boolean RIGHT_TO_LEFT = false;
 	private Reservation res;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private String roomType;
+	private ArrayList<Reservation> reservations;
 	
 	private HotelReservationSystem s;
 	public ReservationMake(HotelReservationSystem s)
 	{
+		reservations = new ArrayList<Reservation>();
 		res = new Reservation(null,null,0,0,0,"");
 		this.s = s;
 		JFrame frame = new JFrame();
@@ -108,9 +114,7 @@ public class ReservationMake {
 	    c.gridy = 1;
 	    frame.add(button, c);*/
 		
-		LocalDate startDate = LocalDate.parse(jf.getText(), formatter);
-		LocalDate endDate = LocalDate.parse(jf2.getText(), formatter);
-		String roomType = jf3.getText();
+		
 
 		JTextArea availableRooms = new JTextArea("Available Rooms");
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -137,6 +141,9 @@ public class ReservationMake {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				startDate = LocalDate.parse(jf.getText(), formatter);
+				endDate = LocalDate.parse(jf2.getText(), formatter);
+				roomType = jf3.getText();
 				if (startDate.isBefore(LocalDate.now()) || endDate.isBefore(LocalDate.now()))
 				{
 					availableRooms.setText("Check in and Check out date cannot be before today");
@@ -311,6 +318,45 @@ public class ReservationMake {
 			}
 		};
 		res.addChangeListener(change);
+		
+		confirm.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int charge = ((Integer.parseInt(roomType))*((int)startDate.until(endDate, ChronoUnit.DAYS) + 1));
+				Reservation ress = new Reservation(startDate, endDate, s.getCurrentGuest().getUserID(),
+						Integer.parseInt(desiredRoom.getText()), charge, roomType );
+				s.getCurrentGuest().addReservation(ress);
+				reservations.add(ress);
+				s.addReservation(ress);
+				
+			}
+	
+		});
+		
+		more.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ReservationMake(s);
+				
+			}
+	
+		});
+		
+		done.addActionListener(new ActionListener()
+				{
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						frame.dispose();
+						new Receipt(s, reservations);
+						
+					}
+			
+				});
 
 		frame.setSize(500, 500);
 		frame.setVisible(true);

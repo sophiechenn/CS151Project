@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,7 +14,7 @@ import javax.swing.SwingConstants;
 public class Receipt {
 	private HotelReservationSystem s;
 
-	public Receipt(HotelReservationSystem s)
+	public Receipt(HotelReservationSystem s, ArrayList<Reservation> reservations)
 	{
 		this.s = s;
 		//Create two buttons
@@ -48,13 +50,17 @@ public class Receipt {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				new SimpleReceiptGUI(s.getCurrentGuest().getReservations());
+				new HomeScreen(s);
+				new SimpleReceiptGUI(reservations);
+				
 			}
 
 		});
 
 		signin.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new HomeScreen(s);
 				new ComprehensiveReceiptGUI(s.getCurrentGuest().getReservations());
 			}
 

@@ -22,6 +22,7 @@ public class ComprehensiveReceiptGUI implements ReceiptStrategy
     //ComprehensiveReceiptGUI(user.getReservations());
     ComprehensiveReceiptGUI(ArrayList<Reservation> reservations)
     {
+    	this.reservations = reservations;
     	receiptFrame = new JFrame("Comprehensive Receipt");
     	
     	userIdPanel = new JPanel();
