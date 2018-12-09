@@ -208,12 +208,12 @@ public class ReservationMake {
 					String rooms = "";
 					for(Reservation r: s.getReservations())
 					{
-						if (!r.isConflict(startDate, endDate, roomType))
+						if (r.isConflict(startDate, endDate, roomType))
 						{
-							rooms+= r.getRoomNumber();
-							rooms += "\n";
+							
 						}
 					}
+					//for(Room room: s.get)
 					availableRooms.setText(rooms);
 				}
 			}

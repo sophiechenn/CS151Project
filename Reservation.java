@@ -56,5 +56,10 @@ public class Reservation {
 		endDate = e;
 	}
 	
+	public boolean isConflict(LocalDate start, LocalDate end)
+	{
+		if(startDate.isAfter(start))
+	}
+	
 
 }
