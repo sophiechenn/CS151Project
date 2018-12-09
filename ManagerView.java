@@ -19,7 +19,7 @@ public class ManagerView {
 		g = new GregorianCalendar();
 		cal =  new CalendarView(g);
 		JFrame frame = new JFrame();
-		JPanel control1 = cal.getMonth();
+		JPanel control1 = cal.getPanel();
 		
 		cal.addChangeListener(new ChangeListener(){
 
